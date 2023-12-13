@@ -3,7 +3,6 @@ package com.hbm.apiandrecyclerview
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.hbm.apiandrecyclerview.Driver
 
 class DriverDetailActivity : AppCompatActivity() {
 
@@ -16,10 +15,8 @@ class DriverDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_detail)
 
-        // Obtén los datos del piloto del intento
         val driver: Driver? = intent.getParcelableExtra("driver")
 
-        // Configura la interfaz de usuario con los detalles del piloto
         if (driver != null) {
             nameTextView = findViewById(R.id.detailNameTextView)
             numberTextView = findViewById(R.id.detailNumberTextView)
@@ -27,9 +24,9 @@ class DriverDetailActivity : AppCompatActivity() {
             dobTextView = findViewById(R.id.detailDobTextView)
 
             nameTextView.text = "${driver.givenName} ${driver.familyName}"
-            numberTextView.text = "Number: ${driver.permanentNumber}"
-            nationalityTextView.text = "Nationality: ${driver.nationality}"
-            dobTextView.text = "DOB: ${driver.dateOfBirth}"
+            numberTextView.text = "Número: ${driver.permanentNumber}"
+            nationalityTextView.text = "Nacionalidad: ${driver.nationality}"
+            dobTextView.text = "Fecha de nacimiento: ${driver.dateOfBirth}"
         }
     }
 }

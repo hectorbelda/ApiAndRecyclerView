@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Aquí cambiamos la creación del adaptador para incluir la lambda onItemClick
         driverAdapter = DriverAdapter(driversList) { selectedDriver ->
             val intent = Intent(this, DriverDetailActivity::class.java)
             intent.putExtra("driver", selectedDriver)
@@ -32,20 +31,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = driverAdapter
 
         fetchData()
-    }
-
-    private fun filterDrivers(query: String?) {
-        // Filtrar la lista de pilotos según el texto de búsqueda
-        val filteredList = driversList.filter {
-            it.givenName.contains(query.orEmpty(), ignoreCase = true) ||
-                    it.familyName.contains(query.orEmpty(), ignoreCase = true) ||
-                    it.nationality.contains(query.orEmpty(), ignoreCase = true) ||
-                    it.dateOfBirth.contains(query.orEmpty(), ignoreCase = true) ||
-                    it.permanentNumber.contains(query.orEmpty(), ignoreCase = true)
-        }
-
-        // Actualizar el adaptador con la lista filtrada
-        driverAdapter.filterList(filteredList)
     }
 
     private fun fetchData() {
@@ -59,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                     val driversResponse = response.body()
                     driversList.addAll(driversResponse?.mrData?.driverTable?.drivers ?: emptyList())
 
-                    // Actualizar el RecyclerView en el hilo principal
                     driverAdapter.notifyDataSetChanged()
                 } else {
                     Log.e("MainActivity", "Error fetching data: ${response.message()}")
