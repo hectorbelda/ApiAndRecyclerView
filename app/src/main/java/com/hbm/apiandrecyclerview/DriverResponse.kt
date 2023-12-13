@@ -1,5 +1,7 @@
 package com.hbm.apiandrecyclerview
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class DriversResponse(
@@ -23,9 +25,41 @@ data class Driver(
     @SerializedName("familyName") val familyName: String,
     @SerializedName("dateOfBirth") val dateOfBirth: String,
     @SerializedName("nationality") val nationality: String
-)
-{
-    fun getFullName(): String {
-        return "$givenName $familyName"
+): Parcelable {
+
+    override fun describeContents(): Int {
+        return 0
     }
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeString(driverId)
+        dest.writeString(permanentNumber)
+        dest.writeString(code)
+        dest.writeString(url)
+        dest.writeString(givenName)
+        dest.writeString(familyName)
+        dest.writeString(dateOfBirth)
+        dest.writeString(nationality)
+    }
+
+    companion object CREATOR : Parcelable.Creator<Driver> {
+        override fun createFromParcel(parcel: Parcel): Driver {
+            return Driver(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Driver?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+    private constructor(parcel: Parcel) : this(
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty(),
+        parcel.readString().orEmpty()
+    )
 }

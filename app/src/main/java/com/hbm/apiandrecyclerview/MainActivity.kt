@@ -1,5 +1,6 @@
 package com.hbm.apiandrecyclerview
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
@@ -14,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var driverAdapter: DriverAdapter
     private var driversList: MutableList<Driver> = mutableListOf()
 
-    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        driverAdapter = DriverAdapter(driversList)
+
+        // Aquí cambiamos la creación del adaptador para incluir la lambda onItemClick
+        driverAdapter = DriverAdapter(driversList) { selectedDriver ->
+            val intent = Intent(this, DriverDetailActivity::class.java)
+            intent.putExtra("driver", selectedDriver)
+            startActivity(intent)
+        }
         recyclerView.adapter = driverAdapter
 
         fetchData()
@@ -65,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
 
 
 

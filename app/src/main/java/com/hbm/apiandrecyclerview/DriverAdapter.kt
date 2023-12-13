@@ -6,13 +6,24 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DriverAdapter(private var driversList: List<Driver>) : RecyclerView.Adapter<DriverAdapter.ViewHolder>() {
+class DriverAdapter(private var driversList: List<Driver>, private val onItemClick: (Driver) -> Unit) :
+    RecyclerView.Adapter<DriverAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         val numberTextView: TextView = itemView.findViewById(R.id.numberTextView)
         val nationalityTextView: TextView = itemView.findViewById(R.id.nationalityTextView)
         val dobTextView: TextView = itemView.findViewById(R.id.dobTextView)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val selectedDriver = driversList[position]
+                    onItemClick(selectedDriver)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,9 +34,9 @@ class DriverAdapter(private var driversList: List<Driver>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentDriver = driversList[position]
         holder.nameTextView.text = "${currentDriver.givenName} ${currentDriver.familyName}"
-        holder.numberTextView.text = "Number: ${currentDriver.permanentNumber}"
-        holder.nationalityTextView.text = "Nationality: ${currentDriver.nationality}"
-        holder.dobTextView.text = "DOB: ${currentDriver.dateOfBirth}"
+        //holder.numberTextView.text = "Number: ${currentDriver.permanentNumber}"
+        //holder.nationalityTextView.text = "Nationality: ${currentDriver.nationality}"
+        //holder.dobTextView.text = "DOB: ${currentDriver.dateOfBirth}"
     }
 
     override fun getItemCount(): Int {
