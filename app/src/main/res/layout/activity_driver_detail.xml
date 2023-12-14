@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FF0000">
+    android:background="#444444">
 
     <TextView
         android:id="@+id/detailNameTextView"
@@ -13,36 +13,42 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/codTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/detailNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/detailNationalityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/detailDobTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"/>
     <TextView
         android:id="@+id/detailBioTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:autoLink="web"
-        android:linksClickable="true"/>
+        android:linksClickable="true"
+        android:textColor="#FFFFFF"/>
 </LinearLayout>

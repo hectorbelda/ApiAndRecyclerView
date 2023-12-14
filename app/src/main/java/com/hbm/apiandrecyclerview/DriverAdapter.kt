@@ -11,9 +11,6 @@ class DriverAdapter(private var driversList: List<Driver>, private val onItemCli
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val numberTextView: TextView = itemView.findViewById(R.id.numberTextView)
-        val nationalityTextView: TextView = itemView.findViewById(R.id.nationalityTextView)
-        val dobTextView: TextView = itemView.findViewById(R.id.dobTextView)
 
         init {
             itemView.setOnClickListener {
