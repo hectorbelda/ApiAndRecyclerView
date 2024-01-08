@@ -1,0 +1,16 @@
+<!-- res/layout/splash_screen.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_700">
+
+    <!-- Puedes agregar un logo o texto en el centro de la pantalla -->
+    <ImageView
+        android:id="@+id/splashLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="@string/splash_logo_description" />
+
+</RelativeLayout>
